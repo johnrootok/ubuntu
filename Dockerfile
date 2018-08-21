@@ -2,7 +2,8 @@ FROM ubuntu
 
 MAINTAINER johnroot hnesd@qq.com
 RUN apt-get update
-RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get install cgdb -y
 RUN apt-get install net-tools -y
 RUN mkdir  /opt/run
